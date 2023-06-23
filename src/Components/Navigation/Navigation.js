@@ -80,15 +80,7 @@ export default function Navigation() {
         </Link>
       </Typography>
 
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <a href="/#" className="flex items-center">
-          Docs
-        </a>
-      </Typography>
+     
 
       <UserMenu />
     </ul>

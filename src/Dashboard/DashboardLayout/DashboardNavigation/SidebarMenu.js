@@ -7,12 +7,14 @@ import {
     Accordion,
     AccordionHeader,
     AccordionBody,
+    
 } from "@material-tailwind/react";
 import {
     PresentationChartBarIcon,
     UserCircleIcon,
     InboxIcon,
     PowerIcon,
+    HomeModernIcon
 } from "@heroicons/react/24/solid";
 import {
     ChevronRightIcon,
@@ -44,6 +46,17 @@ const SidebarMenu = () => {
    
     return (
         <List>
+
+<Link to='/'>
+
+<ListItem>
+    <ListItemPrefix>
+        <HomeModernIcon strokeWidth={3} className="h-5 w-5" />
+    </ListItemPrefix>
+   Home
+</ListItem>
+</Link>
+
             <Accordion
                 open={open === 1}
                 icon={
