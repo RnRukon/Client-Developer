@@ -97,6 +97,15 @@ const SidebarMenu = () => {
                                 Job Circular
                             </ListItem>
                         </Link>
+                        <Link to='/dashboard/manageCircular'>
+
+                            <ListItem>
+                                <ListItemPrefix>
+                                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                                </ListItemPrefix>
+                                Manage Circular
+                            </ListItem>
+                        </Link>
 
                       
                     </List>}

@@ -20,7 +20,7 @@ const CircularDetails = () => {
 
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto pt-16'>
             <div className='max-w-4xl mx-auto py-10'>
                 <div className='md:flex justify-between'>
                     <div>

@@ -18,6 +18,7 @@ import Circulars from "../Pages/Circulars/Circulars";
 import Candidates from "../Dashboard/DashboardPage/Candidates";
 import Inbox from "../Dashboard/DashboardPage/Inbox";
 import Messages from "../Dashboard/DashboardPage/Messages";
+import ManageCircular from "../Dashboard/DashboardPage/ManageCircular";
 
 
 
@@ -85,6 +86,11 @@ export const routers = createBrowserRouter([
             {
                 path: '/dashboard/ourCompanyJobCircular',
                 element: <CompanyRoute> <OurCompanyJobCircular /></CompanyRoute>
+
+            },
+            {
+                path: '/dashboard/manageCircular',
+                element: <CompanyRoute> <ManageCircular /></CompanyRoute>
 
             },
             {

@@ -11,6 +11,8 @@ const Circulars = () => {
     const { data, isLoading } = useGetAllCircularQuery();
     const [back, setBack] = useState(false);
  
+
+
     return (
         <div className=''>
             <Navigation />
@@ -29,7 +31,7 @@ const Circulars = () => {
 
                         <List>
                             {
-                                data?.result?.map(data =>
+                                data?.result?.filter(data=>data?.status==='approved')?.map(data =>
                                     <ListItem onClick={() => setBack(false)} key={data?._id} className='border'>
 
                                         <Link to={`/circulars/circularDetails/${data?._id}`} >

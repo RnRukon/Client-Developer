@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from '../../Components/Navigation/Navigation';
 import { Button, CardHeader } from '@material-tailwind/react';
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGetMeQuery } from '../../Redux/Features/User/UserApi';
 import DeveloperCard from '../../Components/DeveloperCard/DeveloperCard';
 import Footer from '../../Components/Footer/footer';
@@ -15,6 +15,11 @@ const Profile = () => {
     const { data } = useGetMeQuery();
     const user = data?.result?.user;
 
+const navigate=useNavigate();
+
+    const handleCreateChatting=()=>{
+        navigate('/dashboard/inbox/123')
+    }
     return (
         <div>
             <Navigation />
@@ -43,8 +48,8 @@ const Profile = () => {
                         {user?.role === "company" && <CompanyCard company={user} />}
                     </div>
 
-                    {user?.role === "user" && <DeveloperAbout user={user} />}
-                    {user?.role === "company" && <CompanyAbout company={user} />}
+                    {user?.role === "user" && <DeveloperAbout handleCreateChatting={handleCreateChatting} user={user} />}
+                    {user?.role === "company" && <CompanyAbout handleCreateChatting={handleCreateChatting} company={user} />}
 
 
                 </div>

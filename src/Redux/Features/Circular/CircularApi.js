@@ -67,7 +67,7 @@ export const circularApi = createApi({
                 headers: { 'Authorization': token },
                 body: data
             }),
-            invalidatesTags: ['user']
+            invalidatesTags: ['circular']
         }),
     })
 
