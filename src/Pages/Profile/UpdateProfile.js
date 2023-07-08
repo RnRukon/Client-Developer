@@ -9,15 +9,16 @@ import { useSelector } from 'react-redux';
 import Footer from '../../Components/Footer/footer';
 import UserProfileUpdateForm from '../../Components/ProfileUpdateForm/UserProfileUpdateForm';
 import CompanyProfileUpdateForm from '../../Components/ProfileUpdateForm/CompanyProfileUpdateForm';
+import imageUploader from '../../Utils/imageUploader';
 
 
 const UpdateProfile = () => {
 
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
 
-    const [updateProfile,{isSuccess}] = useUpdateProfileMutation();
+    const [updateProfile] = useUpdateProfileMutation();
 
-    console.log(isSuccess);
+    
     const { data } = useGetMeQuery();
     const { user } = useSelector(state => state.auth);
 
@@ -26,10 +27,25 @@ const UpdateProfile = () => {
         reset(data?.result?.user)
     }, [reset, data?.result?.user])
 
+
+
+    const photoChangeHandler = async (data) => {
+
+        const photoURL = await imageUploader(data);
+
+        await updateProfile({ photo:photoURL });
+  
+    }
+
+
+
+
     const onSubmit = data => {
 
 
         const companyData = {
+            fname: data.fname,
+            lname: data.lname,
             companyAddress: data.companyAddress,
             companyName: data.companyName,
             companyType: data.companyType,
@@ -69,12 +85,15 @@ const UpdateProfile = () => {
         if (user.role === 'user') {
             updateProfile(userData);
         }
+        if (user.role === 'admin') {
+            updateProfile(companyData);
+        }
     };
 
 
 
     return (
-        <div>
+        <div className='pt-20'>
             <Navigation />
 
             <div className=' py-24 container mx-auto'>
@@ -105,6 +124,15 @@ const UpdateProfile = () => {
                     user={user}
                 />}
                 {user?.role === 'company' && <CompanyProfileUpdateForm
+                    data={data}
+                    handleSubmit={handleSubmit}
+                    onSubmit={onSubmit}
+                    register={register}
+                    setValue={setValue}
+                    errors={errors}
+                    user={user}
+                />}
+                {user?.role === 'admin' && <CompanyProfileUpdateForm
                     data={data}
                     handleSubmit={handleSubmit}
                     onSubmit={onSubmit}

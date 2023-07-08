@@ -36,8 +36,13 @@ const Inbox = () => {
                                         <div className='flex items-center gap-2'>
 
                                             <div>
-                                                <img className='h-10 w-10' src="/img/user.avif" alt="" />
+                                                <img className='h-10 w-10'
+                                                    src={"/img/user.avif"}
+
+                                                    alt="" />
                                             </div>
+
+                                            
                                             <div>
 
                                                 {

@@ -1,19 +1,36 @@
 import React from 'react';
 import { Button, Card, Input, Textarea } from '@material-tailwind/react';
+import { useSelector } from 'react-redux';
+import { useUpdateProfileMutation } from '../../Redux/Features/User/UserApi';
+import imageUploader from '../../Utils/imageUploader';
 
 const CompanyProfileUpdateForm = ({ data, handleSubmit, onSubmit, register, errors }) => {
+    const { user } = useSelector(state => state.auth);
 
+
+    const [updateProfile] = useUpdateProfileMutation();
+    const photoChangeHandler = async (data) => {
+
+        const photoURL = await imageUploader(data);
+
+        await updateProfile({ photo: photoURL });
+
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+          
             <div className='grid grid-cols-12 gap-5'>
                 <Card className='col-span-12 md:col-span-4 p-10'>
                     <div>
                         <img
                             className="h-60 w-60 rounded-full mx-auto"
-                            src='/img/team-4.png'
+                            src={data?.result?.user?.photo || '/img/user.avif'}
                             alt="Profile"
                         />
-                        <img src="" alt="" />
+                        <input type="file" name="" id=""
+
+                            onChange={(e) => photoChangeHandler(e?.target.files[0])}
+                        />
 
                         <div className=' text-black text-center' >
                             <h1 className='text-2xl font-bold pb-3'>
@@ -38,6 +55,29 @@ const CompanyProfileUpdateForm = ({ data, handleSubmit, onSubmit, register, erro
 
                             <div className="text-gray-700">
                                 <div className="grid md:grid-cols-2 text-sm">
+                                    {
+                                        user.role === 'admin' &&
+                                        <div className="grid md:grid-cols-1">
+                                            <div className="md:px-4 py-2 font-semibold text-xs ">First Name</div>
+                                            <div className="md:md:px-4 py-2">
+                                                <Input
+                                                    {...register("fname", { required: true })}
+                                                    size="md" label="First Name*" />
+                                                {errors.fname && <p className='text-red-500 text-xs'>This field is required</p>}
+                                            </div>
+                                        </div>
+                                    }
+                                    {
+                                        user.role === 'admin' &&
+                                        <div className="grid md:grid-cols-1">
+                                            <div className="md:px-4 py-2 font-semibold text-xs">Last Name</div>
+                                            <div className="md:px-4 py-2">
+                                                <Input
+                                                    {...register("lname", { required: true })}
+                                                    size="md" label="Last Name*" />
+                                                {errors.lname && <p className='text-red-500 text-xs'>This field is required</p>}
+                                            </div>
+                                        </div>}
                                     <div className="grid md:grid-cols-1">
                                         <div className="px-4 py-2 font-semibold">Company Name</div>
                                         <div className="px-4 py-2">

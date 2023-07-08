@@ -1,7 +1,20 @@
 import React from 'react';
 import { Button, Card, Input, Option, Select, Textarea, Typography } from '@material-tailwind/react';
+import imageUploader from '../../Utils/imageUploader';
+import { useUpdateProfileMutation } from '../../Redux/Features/User/UserApi';
 
 const UserProfileUpdateForm = ({ data, handleSubmit, onSubmit, register, setValue, errors, user }) => {
+
+
+    const [updateProfile] = useUpdateProfileMutation();
+    const photoChangeHandler = async (data) => {
+
+        const photoURL = await imageUploader(data);
+
+        await updateProfile({ photo:photoURL });
+  
+    }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='grid grid-cols-12 gap-5'>
@@ -10,10 +23,13 @@ const UserProfileUpdateForm = ({ data, handleSubmit, onSubmit, register, setValu
 
                         <img
                             className="h-60 w-60 rounded-full mx-auto"
-                            src='/img/team-4.png'
+                            src={data?.result?.user?.photo || '/img/user.avif'}
                             alt="Profile"
                         />
-                        <img src="" alt="" />
+                        <input type="file" name="" id=""
+
+                            onChange={(e) => photoChangeHandler(e?.target.files[0])}
+                        />
 
                         <div className=' text-black text-center' >
                             <Typography variant='h5'>

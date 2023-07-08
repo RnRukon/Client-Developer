@@ -7,6 +7,7 @@ import { userApi } from '../Features/User/UserApi';
 import { circularApi } from '../Features/Circular/CircularApi';
 import { inboxApi } from '../Features/Inbox/InboxApi';
 import { messageApi } from '../Features/Inbox/messageApi';
+import { feedbackApi } from '../Features/Feedback/FeedbackApi';
 /* import createQuoteSlice from '../Features/quotes/quotesSlice';
 import { userApi } from '../Features/User/userApi';
 import configureSlice from '../Features/quotes/configureSlice';
@@ -23,13 +24,12 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [circularApi.reducerPath]: circularApi.reducer,
     [inboxApi.reducerPath]: inboxApi.reducer,
-     [messageApi.reducerPath]: messageApi.reducer,
-   /*   [feedbackApi.reducerPath]: feedbackApi.reducer, */
-      // quote: createQuoteSlice,
-    // configure: configureSlice
+    [messageApi.reducerPath]: messageApi.reducer,
+    [feedbackApi.reducerPath]: feedbackApi.reducer,
+
 
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(userApi.middleware, circularApi.middleware, inboxApi.middleware,messageApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(userApi.middleware, circularApi.middleware, inboxApi.middleware, messageApi.middleware,feedbackApi.middleware),
 
 })
 

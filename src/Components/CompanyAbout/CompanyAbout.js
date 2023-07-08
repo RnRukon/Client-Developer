@@ -1,14 +1,23 @@
 import { Card, CardBody, IconButton } from '@material-tailwind/react';
 import React from 'react';
 import { FaFacebookMessenger } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const CompanyAbout = ({ company, handleCreateChatting }) => {
-
+    const { user } = useSelector(state => state.auth);
     return (
         <Card className='col-span-12 md:col-span-8'>
             <CardBody>
                 <div className="text-gray-700">
                     <div className="grid md:grid-cols-2 text-sm">
+                        {user?.role === "admin" && <div className="grid grid-cols-2">
+                            <div className="px-4 py-2 font-semibold">First Name</div>
+                            <div className="px-4 py-2">{company?.fname}</div>
+                        </div>}
+                        {user?.role === "admin" && <div className="grid grid-cols-2">
+                            <div className="px-4 py-2 font-semibold">Last Name</div>
+                            <div className="px-4 py-2">{company?.lname}</div>
+                        </div>}
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Address</div>
                             <div className="px-4 py-2">{company?.companyAddress}</div>

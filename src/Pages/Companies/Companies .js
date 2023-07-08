@@ -8,22 +8,30 @@ import { useGetAllUserQuery } from '../../Redux/Features/User/UserApi';
 
 const Companies = () => {
 
-    const [search, setSearch] = React.useState("");
+    const [searchValue, setSearchValue] = React.useState("");
 
     const { data: companiesData, isLoading } = useGetAllUserQuery({ role: 'company' });
     const companies = companiesData?.result?.users;
+
+
+    const filterData = companies?.filter(data =>
+        data?.companyName?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase()) ||
+        data?.companyType?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase())
+    );
+
+
     return (
-        <div>
+        <div className='pt-20'>
             <Navigation />
 
             <div className='container mx-auto py-10'>
                 <div className='flex justify-center pb-5'>
-                    <Search setSearch={setSearch} />
+                    <Search setSearchValue={setSearchValue} />
                 </div>
                 <div className='grid md:grid-cols-4 gap-5'>
 
                     {isLoading ? <h1>Loading...</h1> :
-                        companies?.map(company =>
+                        filterData?.map(company =>
 
                             <CompanyCard key={company?._id} company={company} Link={Link} />
 

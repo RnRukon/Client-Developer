@@ -7,7 +7,7 @@ const Developers = () => {
 
 
     const { data: developersData, isLoading } = useGetAllUserQuery({ role: 'user' });
-    const developers = developersData?.result?.users?.slice(0, 7);
+    const developers = developersData?.result?.users?.slice(0, 8);
 
 
 

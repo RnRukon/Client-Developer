@@ -3,8 +3,11 @@ import React from 'react';
 import { BsLinkedin } from 'react-icons/bs';
 import { CgWebsite } from 'react-icons/cg';
 import { FaGithubAlt } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const CompanyCard = ({ Link, company }) => {
+    const { user } = useSelector(state => state.auth);
+   
 
     return (
         <Card className=' flex flex-col '>
@@ -13,10 +16,12 @@ const CompanyCard = ({ Link, company }) => {
                     Link ? <Link to={`/details/${company?._id}`}>
                         <img
                             className="h-60 w-60 rounded-full mx-auto"
-                            src='/img/team-4.png'
+                            src={company?.photo || '/img/user.avif'}
                             alt="Profile"
                         />
-
+                        {user?.role === 'admin' && <h1 className=' text-black text-center text-sm font-bold' >
+                            {company?.fname} {company?.lname}
+                        </h1>}
                         <h1 className=' text-black text-center text-2xl font-bold' >
                             {company?.companyName}
                         </h1>
@@ -32,9 +37,12 @@ const CompanyCard = ({ Link, company }) => {
                         <div>
                             <img
                                 className="h-60 w-60 rounded-full mx-auto"
-                                src='/img/team-4.png'
+                                src={company?.photo || '/img/user.avif'}
                                 alt="Profile"
                             />
+                            {user?.role === 'admin' && <h1 className=' text-black text-center text-sm font-bold' >
+                                {company?.fname} {company?.lname}
+                            </h1>}
                             <h1 className=' text-black text-center text-2xl font-bold' >
                                 {company?.companyName}
                             </h1>

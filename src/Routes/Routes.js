@@ -6,7 +6,7 @@ import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import Profile from "../Pages/Profile/Profile";
 import About from "../Pages/About/About";
 import UpdateProfile from "../Pages/Profile/UpdateProfile";
-import { PrivateRoute, CompanyRoute } from "./PrivateRoute";
+import { PrivateRoute, CompanyRoute, AdminRoute } from "./PrivateRoute";
 import Developers from "../Pages/Developers/Developers";
 import Details from "../Pages/DetailsPage/Details";
 import Companies from "../Pages/Companies/Companies ";
@@ -19,6 +19,10 @@ import Candidates from "../Dashboard/DashboardPage/Candidates";
 import Inbox from "../Dashboard/DashboardPage/Inbox";
 import Messages from "../Dashboard/DashboardPage/Messages";
 import ManageCircular from "../Dashboard/DashboardPage/ManageCircular";
+import ContactPage from "../Pages/ContactPage";
+import NoteFound from "../Pages/404/404";
+import FeedbackForm from "../Dashboard/DashboardPage/FeedbackForm";
+import Feedbacks from "../Dashboard/DashboardPage/Feedbacks";
 
 
 
@@ -44,6 +48,10 @@ export const routers = createBrowserRouter([
     {
         path: '/about',
         element: <About />
+    },
+    {
+        path: '/contactPage',
+        element: <ContactPage />
     },
     {
         path: '/developers',
@@ -90,7 +98,17 @@ export const routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/manageCircular',
-                element: <CompanyRoute> <ManageCircular /></CompanyRoute>
+                element: <AdminRoute> <ManageCircular /></AdminRoute>
+
+            },
+            {
+                path: '/dashboard/feedbacks',
+                element: <AdminRoute> <Feedbacks /></AdminRoute>
+
+            },
+            {
+                path: '/dashboard/feedback',
+                element: <PrivateRoute> <FeedbackForm /></PrivateRoute>
 
             },
             {
@@ -127,5 +145,9 @@ export const routers = createBrowserRouter([
     {
         path: '/login',
         element: <SingInLayout />
+    },
+    {
+        path: '*',
+        element: <NoteFound />
     },
 ])

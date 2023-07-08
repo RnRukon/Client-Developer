@@ -3,13 +3,12 @@ import {
   Typography,
   Button,
   IconButton,
-  Navbar,
   Collapse,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
-
+import { useWindowScroll } from 'react-use';
 export default function Navigation() {
   const [openNav, setOpenNav] = React.useState(false);
 
@@ -58,18 +57,18 @@ export default function Navigation() {
           </Link>
         </Typography>
       }
-      {user?.email && 
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <Link to="/circulars"
-          className="flex items-center">
-          Circulars
-        </Link>
-      </Typography>
-}
+      {user?.email &&
+        <Typography
+          as="li"
+          variant="small"
+          className="p-1 font-normal"
+        >
+          <Link to="/circulars"
+            className="flex items-center">
+            Circulars
+          </Link>
+        </Typography>
+      }
       <Typography
         as="li"
         variant="small"
@@ -79,16 +78,30 @@ export default function Navigation() {
           About
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        className="p-1 font-normal"
+      >
+        <Link to="/contactPage" className="flex items-center">
+          Contact us
+        </Link>
+      </Typography>
 
-     
+
 
       <UserMenu />
     </ul>
   );
 
+  const { y } = useWindowScroll();
+
+  const path = window.location.pathname === "/";
+
+
   return (
 
-    <Navbar className="  sticky  bg-blue-gray-900  inset-0 z-10 border-none h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+    <div className={`${y > "896" && "bg-blue-gray-600"} ${!path && "bg-blue-gray-600"} fixed    inset-0 z-10 border-none h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4`}>
       <div className="flex items-center justify-between text-blue-gray-900">
         <Link to='/'
 
@@ -144,7 +157,7 @@ export default function Navigation() {
           <span>Buy Now</span>
         </Button>
       </Collapse>}
-    </Navbar>
+    </div>
 
   );
 }

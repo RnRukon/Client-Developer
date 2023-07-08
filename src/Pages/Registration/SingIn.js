@@ -10,13 +10,13 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMe, login } from "../../Redux/Features/User/AuthSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function SignIn({ setSingIn, singIn }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+const {error}=useSelector(state=>state.auth)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,16 +27,15 @@ export function SignIn({ setSingIn, singIn }) {
 
 
   const onSubmit = async data => {
-    dispatch(login(data))
-    dispatch(getMe())
+    await dispatch(login(data))
       .then(res => {
-
-        if (res?.payload?.data?.status === 'success') {
-          navigate(location?.state?.from || '/profile')
+        const token  = res?.payload?.data?.token;
+        if (token) {
+          navigate(location?.state?.from || '/profile');
+          dispatch(getMe())
         }
+        
       })
-
-
   };
 
 
@@ -77,6 +76,7 @@ export function SignIn({ setSingIn, singIn }) {
                 size="lg"
               />
               {errors.password && <p className='text-red-500 text-xs'>Password is required</p>}
+              { <p className='text-red-500 text-xs'>{error}</p>}
               <div className="-ml-2.5">
                 <Checkbox
                   {...register("remember", { required: true })}

@@ -12,9 +12,13 @@ import { useSelector } from 'react-redux';
 const CircularCard = ({ data, handleDelete, handleApprove }) => {
 
     const { user } = useSelector(state => state.auth);
+
+    const path=window.location.pathname;
+   console.log(path);
     return (
         <Card className='relative'>
-            <div className='absolute right-0'>
+
+           {path==='/'?'':<div className='absolute right-0'>
 
                 <IconMenu icon={<BiDotsVerticalRounded size={20} />}>
                     <MenuItem onClick={() => handleDelete(data?._id)} className="flex items-center gap-4 py-2 pr-8 pl-2">
@@ -49,6 +53,8 @@ const CircularCard = ({ data, handleDelete, handleApprove }) => {
 
                 </IconMenu>
             </div>
+}
+
             <Link to={`/dashboard/circularDetails/${data?._id}`} >
                 <CardBody>
                     <h1 className='text-base font-bold'>{data.jobTitle} ({data?.jobType})</h1>

@@ -12,7 +12,7 @@ const DeveloperCard = ({ user, Link }) => {
                     Link ? <Link to={`/details/${user?._id}`}>
                         <img
                             className="h-60 w-60 rounded-full mx-auto"
-                            src='/img/team-4.png'
+                            src={user?.photo || '/img/user.avif'}
                             alt="Profile"
                         />
 
@@ -33,7 +33,7 @@ const DeveloperCard = ({ user, Link }) => {
                         <div>
                             <img
                                 className="h-60 w-60 rounded-full mx-auto"
-                                src='/img/team-4.png'
+                                src={user?.photo || '/img/user.avif'}
                                 alt="Profile"
                             />
 

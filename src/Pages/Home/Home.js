@@ -7,7 +7,7 @@ import Features from '../../Components/Features/Features';
 
 const Home = () => {
     return (
-        <div className='bg-blue-gray-100'>
+        <div className=''>
             <Navigation />
             <Banner />
             <Features/>

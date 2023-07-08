@@ -1,23 +1,45 @@
 import { Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const SITEMAP = [
   {
     title: "Company",
-    links: ["About Us", "Careers", "Our Team", "Projects"],
-  },
-  {
-    title: "Help Center",
-    links: ["Discord", "Twitter", "GitHub", "Contact Us"],
+    links: ["about", "circulars", "companies", "developers",],
   },
   {
     title: "Resources",
-    links: ["Blog", "Newsletter", "Free Products", "Affiliate Program"],
+    links: ["Blog", 'contactPage'],
   },
-  {
-    title: "Products",
-    links: ["Templates", "UI Kits", "Icons", "Mockups"],
-  },
+  
 ];
+const links = [
+  {
+    title: "Help Center",
+    links: [
+      {
+        title: "Discord",
+        link: ''
+      },
+      {
+        title: "Twitter",
+        link: ''
+      },
+      {
+        title: "GitHub",
+        link: ''
+      },
+      {
+        title: "Facebook",
+        link: ''
+      },
+
+    ],
+  },
+
+
+];
+
+
 
 const currentYear = new Date().getFullYear();
 
@@ -35,20 +57,49 @@ export default function Footer() {
               >
                 {title}
               </Typography>
+
               <ul className="space-y-1">
                 {links.map((link, key) => (
                   <Typography key={key} as="li" color="blue-gray" className="font-normal">
-                    <a
-                      href="/#"
-                      className="inline-block py-1 pr-2 transition-transform hover:scale-105"
+                    <Link
+                      to={`/${link}`}
+                      className="inline-block py-1 pr-2 transition-transform hover:scale-105 capitalize"
                     >
                       {link}
-                    </a>
+                    </Link>
                   </Typography>
                 ))}
               </ul>
             </div>
           ))}
+
+          {links.map(({ title, links }, key) => (
+            <div key={key} className="w-full">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="mb-4 font-bold uppercase opacity-50"
+              >
+                {title}
+              </Typography>
+
+              <ul className="space-y-1">
+                {links.map((link, key) => (
+                  <Typography key={key} as="li" color="blue-gray" className="font-normal">
+                    <a
+                      href={`/${link?.link}`}
+                      className="inline-block py-1 pr-2 transition-transform hover:scale-105 capitalize"
+                    >
+                      {link?.title}
+                    </a>
+
+                  </Typography>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <img src="/img/development-4536630_640.webp" alt="" />
         </div>
         <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
           <Typography

@@ -59,10 +59,10 @@ const Details = () => {
 
 
     return (
-        <div>
+        <div className='pt-20'>
             <Navigation />
 
-            <div className=' py-24 container mx-auto'>
+            <div className=' py-24  container mx-auto'>
                 <CardHeader >
 
                     <div className="flex items-center justify-between p-5">                                    <div className='flex items-center  space-x-2 font-semibold text-gray-900 leading-8'>

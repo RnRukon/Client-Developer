@@ -80,7 +80,12 @@ const CircularDetails = () => {
                     <Link to={`/details/${circular?.company?._id}`}>
 
                         <div className='flex items-center  gap-3'>
-                            <img src="/img/team-4.png" alt=""
+                            <img 
+                            
+                            src={circular?.company?.photo || '/img/user.avif'} 
+                            
+                            
+                            alt=""
                                 className='w-14 h-14  rounded-full'
                             />
                             <div>

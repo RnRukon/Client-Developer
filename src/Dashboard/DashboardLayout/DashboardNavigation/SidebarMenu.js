@@ -7,7 +7,7 @@ import {
     Accordion,
     AccordionHeader,
     AccordionBody,
-    
+
 } from "@material-tailwind/react";
 import {
     PresentationChartBarIcon,
@@ -43,19 +43,19 @@ const SidebarMenu = () => {
         data?.receiver.email === user.email);
 
 
-   
+
     return (
         <List>
 
-<Link to='/'>
+            <Link to='/'>
 
-<ListItem>
-    <ListItemPrefix>
-        <HomeModernIcon strokeWidth={3} className="h-5 w-5" />
-    </ListItemPrefix>
-   Home
-</ListItem>
-</Link>
+                <ListItem>
+                    <ListItemPrefix>
+                        <HomeModernIcon strokeWidth={3} className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Home
+                </ListItem>
+            </Link>
 
             <Accordion
                 open={open === 1}
@@ -66,7 +66,7 @@ const SidebarMenu = () => {
                     />
                 }
             >
-                <ListItem className="p-0" selected={open === 1}>
+                {user?.role !== "user" && <ListItem className="p-0" selected={open === 1}>
                     <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
                         <ListItemPrefix>
                             <PresentationChartBarIcon className="h-5 w-5" />
@@ -75,10 +75,10 @@ const SidebarMenu = () => {
                             Dashboard
                         </Typography>
                     </AccordionHeader>
-                </ListItem>
+                </ListItem>}
                 <AccordionBody className="py-1">
-                   {user?.role==='company'&& <List className="p-0">
-                        <Link to='/dashboard/postJobCircular'>
+                    <List className="p-0">
+                        {user.role !== "user" && <Link to='/dashboard/postJobCircular'>
 
                             <ListItem>
                                 <ListItemPrefix>
@@ -86,9 +86,9 @@ const SidebarMenu = () => {
                                 </ListItemPrefix>
                                 Post job Circular
                             </ListItem>
-                        </Link>
+                        </Link>}
 
-                        <Link to='/dashboard/ourCompanyJobCircular'>
+                        {user.role !== "user" && <Link to='/dashboard/ourCompanyJobCircular'>
 
                             <ListItem>
                                 <ListItemPrefix>
@@ -96,8 +96,9 @@ const SidebarMenu = () => {
                                 </ListItemPrefix>
                                 Job Circular
                             </ListItem>
-                        </Link>
-                        <Link to='/dashboard/manageCircular'>
+                        </Link>}
+
+                        {user.role === "admin" && <Link to='/dashboard/manageCircular'>
 
                             <ListItem>
                                 <ListItemPrefix>
@@ -105,10 +106,10 @@ const SidebarMenu = () => {
                                 </ListItemPrefix>
                                 Manage Circular
                             </ListItem>
-                        </Link>
+                        </Link>}
 
-                      
-                    </List>}
+
+                    </List>
                 </AccordionBody>
             </Accordion>
 
@@ -119,7 +120,7 @@ const SidebarMenu = () => {
                         <InboxIcon className="h-5 w-5" />
                     </ListItemPrefix>
                     Inbox
-                    
+
                 </ListItem>
             </Link>
             <Link to='/profile'>
@@ -130,9 +131,17 @@ const SidebarMenu = () => {
                     Profile
                 </ListItem>
             </Link>
-          
+            <Link to='/dashboard/feedback'>
+                <ListItem>
+                    <ListItemPrefix>
+                        <UserCircleIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Feedback
+                </ListItem>
+            </Link>
+
             <ListItem
-              onClick={() => dispatch(logout())}
+                onClick={() => dispatch(logout())}
             >
 
                 <ListItemPrefix>

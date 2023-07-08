@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 const Companies = () => {
 
     const { data: companiesData, isLoading } = useGetAllUserQuery({ role: 'company' });
-    const companies = companiesData?.result?.users.slice(0, 7);
+    const companies = companiesData?.result?.users.slice(0, 8);
 
 
     return (
-        <div className=' py-16'>
+        <div className=''>
             <h1 className='text-lg font-extrabold py-10'>Software  Companies</h1>
             <div className='grid md:grid-cols-4 gap-5'>
 

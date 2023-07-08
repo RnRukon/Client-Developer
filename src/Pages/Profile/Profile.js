@@ -21,7 +21,7 @@ const navigate=useNavigate();
         navigate('/dashboard/inbox/123')
     }
     return (
-        <div>
+        <div className='pt-20'>
             <Navigation />
 
             <div className=' py-24 container mx-auto'>
@@ -46,10 +46,12 @@ const navigate=useNavigate();
                     <div className='col-span-12 md:col-span-4 '>
                         {user?.role === "user" && <DeveloperCard user={user} />}
                         {user?.role === "company" && <CompanyCard company={user} />}
+                        {user?.role === "admin" && <CompanyCard company={user} />}
                     </div>
 
                     {user?.role === "user" && <DeveloperAbout handleCreateChatting={handleCreateChatting} user={user} />}
                     {user?.role === "company" && <CompanyAbout handleCreateChatting={handleCreateChatting} company={user} />}
+                    {user?.role === "admin" && <CompanyAbout handleCreateChatting={handleCreateChatting} company={user} />}
 
 
                 </div>
