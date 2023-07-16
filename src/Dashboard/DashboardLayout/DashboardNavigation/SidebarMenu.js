@@ -107,7 +107,7 @@ const SidebarMenu = () => {
                                 Manage Circular
                             </ListItem>
                         </Link>}
-                        {user.role === "admin" && <Link to='/dashboard/feedback'>
+                        {user.role === "admin" && <Link to='/dashboard/feedbacks'>
 
                             <ListItem>
                                 <ListItemPrefix>
