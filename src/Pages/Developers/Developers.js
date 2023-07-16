@@ -35,9 +35,11 @@ const Developers = () => {
             <Navigation />
 
             <div className='container mx-auto py-10'>
-                <div className='flex justify-center pb-5'>
+                <div className='flex justify-center '>
                     <Search setSearchValue={setSearchValue} />
+
                 </div>
+                <p className='text-xs text-blue-gray-500 text-center pb-5'>Search by first or last name or developer laval.</p>
                 <div className='grid md:grid-cols-4 gap-5'>
 
                     {isLoading ? <h1>Loading...</h1> :

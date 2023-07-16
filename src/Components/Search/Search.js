@@ -1,12 +1,12 @@
 import React from 'react';
 import { Input, Button } from "@material-tailwind/react";
 import { FiSearch } from 'react-icons/fi';
-const Search = ({ setSearchValue }) => {
+const Search = ({ setSearchValue, placeholder }) => {
     const [value, setValue] = React.useState("");
     const onChange = ({ target }) => {
-        if(target.value){
+        if (target.value) {
             setValue(target.value)
-        }else{
+        } else {
             setSearchValue("")
         }
     };
@@ -18,6 +18,7 @@ const Search = ({ setSearchValue }) => {
                 label="Search"
                 // value={value}
                 onChange={onChange}
+                placeholder={placeholder}
                 className="pr-20"
                 containerProps={{
                     className: "min-w-0",

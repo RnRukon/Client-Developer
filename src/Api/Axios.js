@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 
-export const API = 'http://localhost:5000/api/v1/developer';
+export const API = 'https://developer-cs91.onrender.com/api/v1/developer';
 
 export const token = `Bearer ${localStorage.getItem('developerAccessToken')}`;
 const Axios = axios.create({

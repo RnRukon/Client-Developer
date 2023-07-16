@@ -40,6 +40,7 @@ const Circulars = () => {
             <div className='flex justify-center  pt-10'>
                 <Search setSearchValue={setSearchValue} />
             </div>
+            <p className='text-xs text-blue-gray-500 text-center pb-5'>Search by Job Title,job location,job type or company name.</p>
             <div className='container mx-auto md:flex flex-grow gap-6'>
                 <Button size='sm' className={`${back ? "hidden" : "block md:hidden"} `} variant='text' onClick={() => setBack(true)}>
                     <MdOutlineKeyboardBackspace size={24} />
