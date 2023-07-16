@@ -6,13 +6,14 @@ import {
 } from "@material-tailwind/react";
 import contactData from '../../Data/contact-data';
 import { Link } from 'react-router-dom';
-
+import BannerPhoto from './banner.jpg'
 const Banner = () => {
     return (
         <>
-            <div className="relative flex  h-screen content-center items-center justify-center pt-16 pb-32">
-                <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')] bg-cover bg-center" />
-                <div className="absolute top-0 h-full w-full bg-black/40 bg-cover bg-center" />
+            <div className="relative flex  h-screen  content-center items-center justify-center pt-16 pb-32">
+                <div className={`absolute top-0 h-full w-full   bg-cover bg-center`}
+                    style={{ backgroundImage: `url(${BannerPhoto})` }} />
+                <div className="absolute top-0 h-full w-full  bg-cover bg-center" />
                 <div className="max-w-8xl container relative mx-auto">
                     <div className="flex flex-wrap items-center">
                         <div className="ml-auto mr-auto w-full px-4 text-center lg:w-8/12">
@@ -24,7 +25,7 @@ const Banner = () => {
                                 Your story starts with us.
                             </Typography>
                             <Typography variant="lead" color="white" className="opacity-80 text-sm">
-                               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi repellat hic modi cupiditate molestiae nisi totam in recusandae consequatur officia? Laudantium aspernatur laborum, esse culpa odit repellat reprehenderit deserunt harum!
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi repellat hic modi cupiditate molestiae nisi totam in recusandae consequatur officia? Laudantium aspernatur laborum, esse culpa odit repellat reprehenderit deserunt harum!
                             </Typography>
                         </div>
                     </div>
@@ -41,7 +42,7 @@ const Banner = () => {
 
                         className={`text-center text-blue-gray-900 bg-white px-6 py-4  ${style}`}
                     >
-                      
+
                         <Link to={path}>
                             <div className={`mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full  shadow-lg text-white shadow-gray-500/20 ${color}`}>
                                 {React.createElement(icon, {

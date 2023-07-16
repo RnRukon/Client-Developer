@@ -5,7 +5,9 @@ import { Link, Outlet } from 'react-router-dom';
 import Navigation from '../../Components/Navigation/Navigation';
 import Footer from '../../Components/Footer/footer';
 import Search from '../../Components/Search/Search';
+import Pagination from '../../Components/Pagination/Pagination';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md'
+
 const Circulars = () => {
     const [back, setBack] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -24,7 +26,13 @@ const Circulars = () => {
 
 
     )
-
+    // pagination --------------------
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const count = Math?.ceil(filterData?.length / itemsPerPage);
+    const paginateItem = filterData?.slice(startIndex, endIndex);
 
     return (
         <div className='pt-20'>
@@ -44,16 +52,16 @@ const Circulars = () => {
 
                         <List>
                             {
-                                filterData?.map(data =>
+                                paginateItem?.map(data =>
                                     <ListItem onClick={() => setBack(false)} key={data?._id} className='border'>
 
                                         <Link to={`/circulars/circularDetails/${data?._id}`} >
 
                                             <div className='flex gap-5 items-center'>
                                                 <div>
-                                                    <img 
-                                                    src={data?.company?.photo || '/img/user.avif'}
-                                                     alt=""
+                                                    <img
+                                                        src={data?.company?.photo || '/img/user.avif'}
+                                                        alt=""
                                                         className='h-24 rounded-full'
 
                                                     />
@@ -75,6 +83,13 @@ const Circulars = () => {
 
 
                     }
+                    <div className='py-5 flex justify-center'>
+                        <Pagination
+                            setCurrentPage={setCurrentPage}
+                            currentPage={currentPage}
+                            count={count}
+                        />
+                    </div>
                 </div>
 
                 <div className={`md:h-screen overflow-y-auto px-5 md:block  ${back ? "hidden" : "block"}`}>

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Typography,
-  Button,
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
@@ -101,7 +100,7 @@ export default function Navigation() {
 
   return (
 
-    <div className={`${y > "896" && "bg-blue-gray-600"} ${!path && "bg-blue-gray-600"} fixed    inset-0 z-10 border-none h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4`}>
+    <div className={`${y > "896" && "bg-light-blue-900"} ${!path && "bg-light-blue-900 "} fixed    inset-0 z-10 border-none h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4`}>
       <div className="flex items-center justify-between text-blue-gray-900">
         <Link to='/'
 
@@ -153,9 +152,6 @@ export default function Navigation() {
       </div>
       {<Collapse open={openNav}>
         {navList}
-        <Button variant="gradient" size="sm" fullWidth className="mb-2">
-          <span>Buy Now</span>
-        </Button>
       </Collapse>}
     </div>
 

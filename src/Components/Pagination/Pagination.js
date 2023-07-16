@@ -2,14 +2,11 @@ import React from 'react';
 
 import Pagination from '@mui/material/Pagination';
 
-const Paginate = ({
-  page,
-  setCurrentPage,
-  count
-}) => {
+const Paginate = ({ currentPage, setCurrentPage, count }) => {
 
 
   const handleChange = (event, value) => {
+
     setCurrentPage(value);
   }
 
@@ -19,7 +16,7 @@ const Paginate = ({
     <Pagination
       onChange={handleChange}
       count={count}
-      page={page}
+      page={currentPage}
       showFirstButton
       showLastButton />
   );

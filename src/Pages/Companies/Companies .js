@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../../Components/Navigation/Navigation';
 import Search from '../../Components/Search/Search';
 import Pagination from '../../Components/Pagination/Pagination';
@@ -19,7 +19,13 @@ const Companies = () => {
         data?.companyType?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase())
     );
 
-
+    // pagination --------------------
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const count = Math?.ceil(filterData?.length / itemsPerPage);
+    const paginateItem = filterData?.slice(startIndex, endIndex);
     return (
         <div className='pt-20'>
             <Navigation />
@@ -31,7 +37,7 @@ const Companies = () => {
                 <div className='grid md:grid-cols-4 gap-5'>
 
                     {isLoading ? <h1>Loading...</h1> :
-                        filterData?.map(company =>
+                        paginateItem?.map(company =>
 
                             <CompanyCard key={company?._id} company={company} Link={Link} />
 
@@ -39,8 +45,12 @@ const Companies = () => {
                     }
                 </div>
             </div>
-            <div className=' text-center py-5'>
-                <Pagination />
+            <div className='py-5 flex justify-center'>
+                <Pagination
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                    count={count}
+                />
             </div>
         </div>
     );

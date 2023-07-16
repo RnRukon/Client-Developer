@@ -15,11 +15,20 @@ const Developers = () => {
 
     const filterData = developers?.filter(data =>
         data?.fname?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase()) ||
-        data?.lname?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase())
+        data?.lname?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase()) ||
+        data?.developerLaval?.toLocaleLowerCase()?.includes(searchValue?.toLocaleLowerCase())
 
 
     );
- 
+
+    // pagination --------------------
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const count = Math?.ceil(filterData?.length / itemsPerPage);
+    const paginateItem = filterData?.slice(startIndex, endIndex);
+
 
     return (
         <div className='pt-20'>
@@ -32,7 +41,7 @@ const Developers = () => {
                 <div className='grid md:grid-cols-4 gap-5'>
 
                     {isLoading ? <h1>Loading...</h1> :
-                        filterData?.map(developer =>
+                        paginateItem?.map(developer =>
 
                             <DeveloperCard key={developer?._id} user={developer} Link={Link} />
 
@@ -40,8 +49,12 @@ const Developers = () => {
                     }
                 </div>
             </div>
-            <div className=' text-center py-5'>
-                <Pagination />
+            <div className='py-5 flex justify-center'>
+                <Pagination
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                    count={count}
+                />
             </div>
         </div>
     );

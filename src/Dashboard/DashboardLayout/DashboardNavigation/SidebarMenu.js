@@ -107,6 +107,15 @@ const SidebarMenu = () => {
                                 Manage Circular
                             </ListItem>
                         </Link>}
+                        {user.role === "admin" && <Link to='/dashboard/feedback'>
+
+                            <ListItem>
+                                <ListItemPrefix>
+                                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                                </ListItemPrefix>
+                                Manage Feedbacks
+                            </ListItem>
+                        </Link>}
 
 
                     </List>

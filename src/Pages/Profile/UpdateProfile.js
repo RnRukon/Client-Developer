@@ -18,7 +18,7 @@ const UpdateProfile = () => {
 
     const [updateProfile] = useUpdateProfileMutation();
 
-    
+
     const { data } = useGetMeQuery();
     const { user } = useSelector(state => state.auth);
 
@@ -33,8 +33,8 @@ const UpdateProfile = () => {
 
         const photoURL = await imageUploader(data);
 
-        await updateProfile({ photo:photoURL });
-  
+        await updateProfile({ photo: photoURL });
+
     }
 
 
@@ -80,13 +80,22 @@ const UpdateProfile = () => {
         }
 
         if (user.role === 'company') {
-            updateProfile(companyData);
+            updateProfile(companyData)
+                .then(res => {
+                    alert(res?.data?.message)
+                })
         }
         if (user.role === 'user') {
-            updateProfile(userData);
+            updateProfile(userData)
+                .then(res => {
+                    alert(res?.data?.message)
+                })
         }
         if (user.role === 'admin') {
-            updateProfile(companyData);
+            updateProfile(companyData)
+                .then(res => {
+                    alert(res?.data?.message)
+                })
         }
     };
 
